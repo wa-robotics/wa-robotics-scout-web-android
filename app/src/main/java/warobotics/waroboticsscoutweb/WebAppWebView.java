@@ -45,7 +45,7 @@ public class WebAppWebView extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         WebView webAppWebView = (WebView) findViewById(R.id.webView);
-        webAppWebView.loadUrl("https://script.google.com/macros/s/AKfycbyTkgLPRNpwivT4qBYKACo7Z33WVStperAZ6YpdwHXERVjuiWc/exec");
+        webAppWebView.loadUrl("https://script.google.com/macros/s/AKfycbyTkgLPRNpwivT4qBYKACo7Z33WVStperAZ6YpdwHXERVjuiWc/dev");
         webAppWebView.setWebViewClient(new WebViewClient());
 
         WebSettings webSettings = webAppWebView.getSettings();
