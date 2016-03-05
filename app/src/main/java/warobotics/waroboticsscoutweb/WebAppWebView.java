@@ -40,6 +40,8 @@ public class WebAppWebView extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(0).setChecked(true); //set My matches as selected by default in the navigation drawer
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
 
         WebView webAppWebView = (WebView) findViewById(R.id.webView);
         webAppWebView.loadUrl("https://script.google.com/macros/s/AKfycbyTkgLPRNpwivT4qBYKACo7Z33WVStperAZ6YpdwHXERVjuiWc/exec?fromandroidapp");
