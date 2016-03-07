@@ -3,6 +3,7 @@ package warobotics.waroboticsscoutweb;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,6 +18,7 @@ import android.webkit.WebViewClient;
 public class WebAppWebView extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    int currentNavItem = R.id.nav_match_list;
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +81,17 @@ public class WebAppWebView extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_refresh) { //refresh button pressed
+            loadMatchPage();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void loadMatchPage() {
+        WebView webAppWebView = (WebView) findViewById(R.id.webView);
+        webAppWebView.loadUrl("https://script.google.com/macros/s/AKfycbyTkgLPRNpwivT4qBYKACo7Z33WVStperAZ6YpdwHXERVjuiWc/exec?fromandroidapp");
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -92,11 +100,11 @@ public class WebAppWebView extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_match_list) { //match list button pressed in sidebar
-            WebView webAppWebView = (WebView) findViewById(R.id.webView);
-            webAppWebView.loadUrl("https://script.google.com/macros/s/AKfycbyTkgLPRNpwivT4qBYKACo7Z33WVStperAZ6YpdwHXERVjuiWc/exec?fromandroidapp");
-        } else if (id == R.id.nav_team_search) { //team search button pressed in sidebar
-
+        if (id == R.id.nav_match_list && currentNavItem != R.id.nav_match_list) { //match list button pressed in sidebar (only if this item is not already selected)
+            loadMatchPage();
+            currentNavItem = R.id.nav_match_list;
+        } else if (id == R.id.nav_team_search && currentNavItem != R.id.nav_team_search) { //team search button pressed in sidebar (only if this item is not already selected)
+            currentNavItem = R.id.nav_team_search;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
