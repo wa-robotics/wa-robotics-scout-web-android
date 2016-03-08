@@ -1,9 +1,10 @@
 package warobotics.waroboticsscoutweb;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -56,6 +57,16 @@ public class WebAppWebView extends AppCompatActivity
         webSettings.setJavaScriptEnabled(true);
     }
 
+    private class MyWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+            return true;
+        }
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -82,8 +93,8 @@ public class WebAppWebView extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_refresh) { //refresh button pressed
-            loadMatchPage();
-            return true;
+            WebView webAppWebView = (WebView) findViewById(R.id.webView);
+            webAppWebView.loadUrl(webAppWebView.getUrl()); //reload the current page displayed in the webview
         }
 
         return super.onOptionsItemSelected(item);
@@ -111,4 +122,6 @@ public class WebAppWebView extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
+
