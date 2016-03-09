@@ -1,7 +1,9 @@
 package warobotics.waroboticsscoutweb;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,11 +12,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
+
+import java.util.logging.Logger;
 
 public class WebAppWebView extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,18 +59,24 @@ public class WebAppWebView extends AppCompatActivity
         WebView webAppWebView = (WebView) findViewById(R.id.webView);
         webAppWebView.loadUrl("https://script.google.com/macros/s/AKfycbyTkgLPRNpwivT4qBYKACo7Z33WVStperAZ6YpdwHXERVjuiWc/exec?fromandroidapp");
         webAppWebView.setWebViewClient(new WebViewClient());
+        webAppWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
 
         WebSettings webSettings = webAppWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
     }
 
-    private class MyWebViewClient extends WebViewClient {
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(intent);
-            return true;
+    public class WebAppInterface {
+        Context mContext;
+
+        /** Instantiate the interface and set the context */
+        WebAppInterface(Context c) {
+            mContext = c;
+        }
+
+        /** Show a toast from the web page */
+        @JavascriptInterface
+        public void showToast(String toast) {
+            Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -105,6 +118,11 @@ public class WebAppWebView extends AppCompatActivity
         webAppWebView.loadUrl("https://script.google.com/macros/s/AKfycbyTkgLPRNpwivT4qBYKACo7Z33WVStperAZ6YpdwHXERVjuiWc/exec?fromandroidapp");
     }
 
+    public void loadTeamSearchPage() {
+        WebView webAppWebView = (WebView) findViewById(R.id.webView);
+        webAppWebView.loadUrl("https://script.google.com/macros/s/AKfycbyTkgLPRNpwivT4qBYKACo7Z33WVStperAZ6YpdwHXERVjuiWc/exec?page=team-search&fromandroidapp");
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -115,6 +133,7 @@ public class WebAppWebView extends AppCompatActivity
             loadMatchPage();
             currentNavItem = R.id.nav_match_list;
         } else if (id == R.id.nav_team_search && currentNavItem != R.id.nav_team_search) { //team search button pressed in sidebar (only if this item is not already selected)
+            loadTeamSearchPage();
             currentNavItem = R.id.nav_team_search;
         }
 
