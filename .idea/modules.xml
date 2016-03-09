@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WARoboticsScoutWeb.iml" filepath="$PROJECT_DIR$/WARoboticsScoutWeb.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wa-robotics-scout-web-android.iml" filepath="$PROJECT_DIR$/wa-robotics-scout-web-android.iml" />
     </modules>
   </component>
 </project>
