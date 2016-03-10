@@ -78,6 +78,13 @@ public class WebAppWebView extends AppCompatActivity
         public void showToast(String toast) {
             Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
         }
+
+        /**Use an intent to open a browser to show the feedback form */
+        @JavascriptInterface
+        public void openFeedbackForm() {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/a/woodward.edu/forms/d/1W2IYYH-SRWF5gKdhqbj2fdIivSLQyHm5fY-3UcNabY0/viewform"));
+            startActivity(browserIntent);
+        }
     }
 
     @Override
