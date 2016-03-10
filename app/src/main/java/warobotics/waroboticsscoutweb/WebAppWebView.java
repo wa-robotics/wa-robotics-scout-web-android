@@ -85,6 +85,16 @@ public class WebAppWebView extends AppCompatActivity
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/a/woodward.edu/forms/d/1W2IYYH-SRWF5gKdhqbj2fdIivSLQyHm5fY-3UcNabY0/viewform"));
             startActivity(browserIntent);
         }
+
+        /**Deselect all items in the nav drawer.  Use this to deselect the items in the nav drawer when the user navigates to a page that can't be indicated in
+         * the nav drawer, such as the match details page
+         */
+        @JavascriptInterface
+        public void deselectNavDrawerItems() {
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView.getMenu().getItem(0).setChecked(false); //deselect My matches in the nav drawer
+            navigationView.getMenu().getItem(1).setChecked(false); //deselect Team search in the nav drawer
+        }
     }
 
     @Override
