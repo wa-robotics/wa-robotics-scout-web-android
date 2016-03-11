@@ -91,9 +91,20 @@ public class WebAppWebView extends AppCompatActivity
          */
         @JavascriptInterface
         public void deselectNavDrawerItems() {
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-            navigationView.getMenu().getItem(0).setChecked(false); //deselect My matches in the nav drawer
-            navigationView.getMenu().getItem(1).setChecked(false); //deselect Team search in the nav drawer
+            runOnUiThread(new Runnable() { //the code to update the UI needs to run on the main thread
+                              @Override
+                              public void run() {
+                                  NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                                  navigationView.getMenu().getItem(0).setChecked(false); //deselect My matches in the nav drawer
+                                  navigationView.getMenu().getItem(1).setChecked(false); //deselect Team search in the nav drawer
+
+                                  currentNavItem = -1; //reset currentNavItem so that after the item is deselected in the nav drawer, tapping on any item in the nav drawer
+                                                       //   (not just the one that had been selected before all items in the nav drawer were deselected) will result in a
+                                                       //   response from the WebView
+                              }
+                          }
+            );
+
         }
     }
 
@@ -121,7 +132,6 @@ public class WebAppWebView extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_refresh) { //refresh button pressed
             WebView webAppWebView = (WebView) findViewById(R.id.webView);
             webAppWebView.loadUrl(webAppWebView.getUrl()); //reload the current page displayed in the webview
