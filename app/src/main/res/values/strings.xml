@@ -5,4 +5,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_refresh">Refresh</string>
+    <string name="app_name_long">WA Robotics Scout</string>
+    <string name="app_name_launcher">WARS Web</string>
 </resources>
