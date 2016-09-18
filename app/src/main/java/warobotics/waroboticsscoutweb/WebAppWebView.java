@@ -151,6 +151,11 @@ public class WebAppWebView extends AppCompatActivity
         webAppWebView.loadUrl("https://script.google.com/macros/s/AKfycbyTkgLPRNpwivT4qBYKACo7Z33WVStperAZ6YpdwHXERVjuiWc/exec?page=team-search&fromandroidapp");
     }
 
+    public void loadScoutingFormPage() {
+        WebView webAppWebView = (WebView) findViewById(R.id.webView);
+        webAppWebView.loadUrl("https://script.google.com/a/macros/woodward.edu/s/AKfycbzjo4-KCrLdrFOcpJCwg3kwWYenjFyV8C6aAxfVZs4/exec?page=scouting-form&fromandroidapp");
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -163,6 +168,9 @@ public class WebAppWebView extends AppCompatActivity
         } else if (id == R.id.nav_team_search && currentNavItem != R.id.nav_team_search) { //team search button pressed in sidebar (only if this item is not already selected)
             loadTeamSearchPage();
             currentNavItem = R.id.nav_team_search;
+        } else if (id == R.id.nav_scouting_form && currentNavItem != R.id.nav_scouting_form) { //scouting form button pressed in sidebar (only if this item is not already selected)
+            loadScoutingFormPage();
+            currentNavItem = R.id.nav_scouting_form;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

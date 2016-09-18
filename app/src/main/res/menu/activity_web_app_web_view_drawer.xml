@@ -5,11 +5,15 @@
         <item
             android:id="@+id/nav_match_list"
             android:icon="@drawable/ic_list"
-            android:title="My matches" />
+            android:title="@string/my_matches" />
         <item
             android:id="@+id/nav_team_search"
             android:icon="@drawable/ic_search"
-            android:title="Team search" />
+            android:title="@string/team_search" />
+        <item
+            android:id="@+id/nav_scouting_form"
+            android:icon="@drawable/ic_create"
+            android:title="@string/scouting_form" />
     </group>
 
 
