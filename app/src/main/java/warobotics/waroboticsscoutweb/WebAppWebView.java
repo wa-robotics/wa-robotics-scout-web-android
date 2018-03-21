@@ -3,7 +3,6 @@ package warobotics.waroboticsscoutweb;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.JavascriptInterface;
@@ -20,8 +18,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
-
-import java.util.logging.Logger;
 
 public class WebAppWebView extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,6 +52,9 @@ public class WebAppWebView extends AppCompatActivity
         navigationView.getMenu().getItem(0).setChecked(true); //set My matches as selected by default in the navigation drawer
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
 
+        Intent intent = getIntent();
+        Uri data = intent.getData();
+
         WebView webAppWebView = (WebView) findViewById(R.id.webView);
         webAppWebView.loadUrl("https://wa-robotics-scout.herokuapp.com");
         webAppWebView.setWebViewClient(new WebViewClient());
@@ -63,6 +62,8 @@ public class WebAppWebView extends AppCompatActivity
 
         WebSettings webSettings = webAppWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+
+
     }
 
     public class WebAppInterface {
