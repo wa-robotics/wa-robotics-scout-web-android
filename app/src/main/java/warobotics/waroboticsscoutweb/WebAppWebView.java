@@ -57,7 +57,7 @@ public class WebAppWebView extends AppCompatActivity
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
 
         WebView webAppWebView = (WebView) findViewById(R.id.webView);
-        webAppWebView.loadUrl("https://script.google.com/macros/s/AKfycbyTkgLPRNpwivT4qBYKACo7Z33WVStperAZ6YpdwHXERVjuiWc/exec?fromandroidapp");
+        webAppWebView.loadUrl("https://wa-robotics-scout.herokuapp.com");
         webAppWebView.setWebViewClient(new WebViewClient());
         webAppWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
 

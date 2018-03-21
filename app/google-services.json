@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "490870467180",
+    "firebase_url": "https://wa-robotics-scout.firebaseio.com",
+    "project_id": "wa-robotics-scout",
+    "storage_bucket": "wa-robotics-scout.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490870467180:android:bae0fff8e7b17cb6",
+        "android_client_info": {
+          "package_name": "warobotics.waroboticsscoutweb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490870467180-coq8olitmgkgekbkhp2houp8km0fvlcd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "warobotics.waroboticsscoutweb",
+            "certificate_hash": "9ebcce5bf8e5a9b2c4b36509e3e092674d6edcb7"
+          }
+        },
+        {
+          "client_id": "490870467180-c8crb0atvq69k3mm4v42euqdtsnnbiv6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChmGOUs3tfKsKEzJ12qydisF7BX_O8wnw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "490870467180-c8crb0atvq69k3mm4v42euqdtsnnbiv6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
